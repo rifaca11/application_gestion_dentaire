@@ -1,0 +1,18 @@
+<template>
+  <div class="about">
+    <h1>Dental sign up</h1>
+       <SignUpForm />
+  </div>
+</template>
+
+<script>
+import SignUpForm from "@/components/SignUpForm.vue";
+
+export default {
+  components: {
+    SignUpForm
+  }
+};
+</script>
+
+<style></style>

@@ -8,10 +8,17 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
+    <body>
+      <div class="container" id="app" v-cloak>
+        <div class="row">
+          <div class="col-md-12 mt-5">
+            <h1 class="text-center">Application gestion des rendez-vous d'un cabinet dentaire </h1>
+            <hr>
+          </div>
+        </div>
+  
+      </div>
+    
     <!-- built files will be auto injected -->
   </body>
 </html>
