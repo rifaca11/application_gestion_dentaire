@@ -78,12 +78,17 @@ class Patient
 
     public function checkPatientExist()
     {
-        $query = "SELECT * FROM users WHERE Reference = :Reference";
+        $query = "SELECT * FROM patient WHERE Reference = :Reference";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':Reference', $this->Reference);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+        // $result = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        return $result;
+        // return $result;
     }
 }

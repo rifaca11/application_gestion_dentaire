@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <h1>Dental sign up</h1>
        <SignUpForm />
   </div>
 </template>

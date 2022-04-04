@@ -143,7 +143,7 @@ class Patients
             if ($patient->create()) {
     
                 $P_arr = array(
-                'message' => 'patient iserted',
+                'message' => 'patient inserted',
                 'state' => true,
                 'reference'=>$patient->Reference);
     
@@ -151,7 +151,7 @@ class Patients
     
             } else {
     
-                $P_arr = array('message' => 'patient not iserted',
+                $P_arr = array('message' => 'patient not inserted',
                 'state' => false);
     
                 echo json_encode($P_arr);
