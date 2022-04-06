@@ -73,16 +73,13 @@ export default {
     },
     async getAllRDVs() {
       let P_id = sessionStorage.getItem("patientId");
-      let obj = "";
       const response = await axios.get(
         "http://localhost/dentaire/RDV/showMyRDV/" +
-          P_id,
-        obj
-      );
+          P_id);
       if (response.data.status == true) {
         this.app = true;
         console.log(response.data);
-        this.rdvs_obj = response.data.rdvs;
+        this.rdvs_obj = response.data.rdv;
         this.patient_personal_informations = response.data.personal_infos;
         console.log("obj is : ");
         console.log(this.rdvs_obj);

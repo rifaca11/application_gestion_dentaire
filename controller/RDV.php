@@ -206,8 +206,6 @@ class RDV
 
     public function checkAvailableTimes()
     {
-
-
         // instantiate Database
         $database = new Database();
         $db = $database->connect();
