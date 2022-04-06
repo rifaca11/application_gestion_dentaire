@@ -1,4 +1,9 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
+header('Access-Control-Allow-Methods:POST,GET');
+header('Access-Control-Allow-Headers: content-type');
+header('Content-Type: application/json');
 
 class RDV
 {
@@ -214,7 +219,8 @@ class RDV
         $data = json_decode(file_get_contents("php://input"));
 
         // get the inserted date
-        $RDV->c_date = $data->c_date;
+        // $RDV->c_date = $data->c_date;
+        $RDV->set_date($data->c_date);
 
         // sending inserted date as paramater
         $result = $RDV->checkAvailableTimes();

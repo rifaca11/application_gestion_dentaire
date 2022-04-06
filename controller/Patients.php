@@ -146,14 +146,10 @@ class Patients
                 'message' => 'patient inserted',
                 'state' => true,
                 'reference'=>$patient->Reference);
-    
                 echo json_encode($P_arr);
-    
             } else {
-    
                 $P_arr = array('message' => 'patient not inserted',
                 'state' => false);
-    
                 echo json_encode($P_arr);
             }
 
@@ -164,10 +160,9 @@ class Patients
         
     }
 
-    public function checkpatient()
+    public function checkPatient()
     {
-        // headers
-
+    
         // instantiate Database
         $database = new Database();
         $db = $database->connect();
@@ -181,6 +176,8 @@ class Patients
         $patient->Reference = $data->Reference;
         // check if the token is valid or not 
         $patientInfo = $patient->checkPatientExist();
+        
+        
         
         // get the resuslt as [$patientInfo]
         

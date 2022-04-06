@@ -36,7 +36,7 @@ class Patient
     // get one patient informations
     public function read_one()
     {
-        $query = 'SELECT * FROM patient  where patientId=:patientId ';
+        $query = 'SELECT * FROM patient where patientId=:patientId ';
         // prepare statement
         $stmt = $this->conn->prepare($query);
         // bind patient id
@@ -82,13 +82,10 @@ class Patient
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':Reference', $this->Reference);
 
-        if($stmt->execute()){
-            return true;
-        }else{
-            return false;
-        }
-        // $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->execute();
         
-        // return $result;
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $result;
     }
 }

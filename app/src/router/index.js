@@ -1,54 +1,43 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import AboutViewComp from "../views/AboutView.vue";
+import RendezVous from "../views/RendezVous.vue";
+import ListRDV from "../views/ListRDV.vue";
+import SignAccount from "../views/SignAccount.vue";
 
+const routes = [{
+        path: "/",
+        name: "HomeView",
+        component: HomeView
+    },
+    {
+        path: "/AboutView",
+        name: "AboutView",
+        component: AboutViewComp
 
-const routes = [
-  {
-    path: '/',
-    name: 'HomeView',
-    component: HomeView
-  },
-  {
-    path: '/AboutView',
-    name: 'AboutView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  },
-  {
-      path: "/RendezV",
-      name: "RendezV",
-      /* beforeEnter: (to, from, next) => {
-                  if (sessionStorage.getItem("userId") === null) {
-                      next({
-                          path: "/SignAccount",
-                      });
-                  } else {
-                      next();
-                  }
-              }, */
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-          import ( /* webpackChunkName: "Booking" */ "../views/RendezV.vue"),
-  },
-  {
-      path: "/SignAccount",
-      name: "SignAccount",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-          import ( /* webpackChunkName: "SignAccount" */ "../views/SignAccount.vue"),
-  },
-];
+    },
+    {
+        path: "/RendezVous",
+        name: "RendezVous",
+        component: RendezVous
 
+    },
+    {
+        path: "/ListRDV",
+        name: "ListRDV",
+        component: ListRDV
+
+    },
+    {
+        path: "/SignAccount",
+        name: "SignAccount",
+        component: SignAccount
+    }
+]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+    history: createWebHistory(),
+    routes,
+});
 
-export default router;
+export default router

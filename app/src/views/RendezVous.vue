@@ -1,17 +1,17 @@
 <template>
   <div>
     <h1>this is dashboard page</h1>
-    <RendezVous />
+    <RendezVousComp />
   </div>
 </template>
 
 <script>
-import RendezVous from "@/components/RendezVous.vue";
+import RendezVousComp from "@/components/RendezVous.vue";
 
 export default {
-  name: 'RendezV',
+  name: 'RendezVous',
   components: {
-    RendezVous
+    RendezVousComp
   }
 };
 </script>

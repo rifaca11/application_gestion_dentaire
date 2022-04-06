@@ -113,3 +113,11 @@
 			<!-- End feature Area -->
   </div>
 </template>
+<script>
+export default {
+  name: 'AboutVIew',
+  props: {
+    msg: String
+  }
+}
+</script>

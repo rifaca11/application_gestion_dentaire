@@ -94,6 +94,7 @@
 import axios from 'axios';
 
 export default {
+  name: 'Sign_Account',
   data() {
     return {
       Reference: "",
@@ -139,7 +140,7 @@ export default {
         obj
       );
 
-      if (res.data.status === true) {
+      if (res.data.status == true) {
         console.log("your reference is correct");
         console.log(res.data);
         sessionStorage.setItem("patientId", res.data.patientInfo.patientId);
@@ -149,7 +150,7 @@ export default {
         );
         localStorage.setItem("ifTrue", true);
 
-        this.$router.push("/RendezV");
+        this.$router.push("/RendezVous");
       } else {
         this.incomplete = true;
         this.msg = "check your reference again";

@@ -17,7 +17,11 @@ class RDVS
     {
         $this->conn = $db;
     }
-
+    public function set_date($date)
+    {
+        $this->c_date = $date;
+    }
+    
     public function createARDV()
     {
 
