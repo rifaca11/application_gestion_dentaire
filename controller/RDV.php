@@ -52,7 +52,7 @@ class RDV
         if ($RDV->createARDV()) {
 
             echo json_encode(
-                array('message' => 'RDV iserted',
+                array('message' => 'RDV inserted',
                     'status' => true)
             );
         } else {

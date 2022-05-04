@@ -3,7 +3,7 @@ class Database
 {
     // DB Params
     private $host = 'localhost';
-    private $db_name = 'rdvs';
+    private $db_name = 'dentaire';
     private $username = 'root';
     private $password = '';
     private $conn;

@@ -1,5 +1,5 @@
 <template>
-  <div class="table-wrapper">
+  <div class="table-wrapper my-5">
     <table class="fl-table" v-if="app">
        <thead>
             <tr class="bg-dark text-light text-center">
@@ -22,7 +22,7 @@
           <td>{{ rdv.start_at }} - {{ rdv.end_at }}</td>
           <td>{{ rdv.rdv_id }}</td>
           <td>
-            <button class="btn">Update</button>
+            <button class="btn" @click="updateARDV(rdv.rdv_id)">Update</button>
             <button
               class="btn btn2"
               @click="deleteARDV(rdv.rdv_id)"
@@ -55,13 +55,31 @@ export default {
         rdv_id: id
       };
       console.log(obj);
-      const response = await axios.delete(
-        "http://localhost/dentaire/RDV/deleteARDV/${id}"
+      const response = await axios.get(
+        "http://localhost/dentaire/RDV/deleteARDV/" +obj.rdv_id
+       
       );
+    
       if (response.data) {
         console.log(response.data);
       }
       this.getAllRDVs();
+    },
+    async updateARDV() {
+      let obj = {
+        creneau_id_fk: this.creneau,
+        patient_subject: this.subject,
+        c_date: this.RDVDate
+      };
+      console.log(obj);
+      const response = await axios.post(
+        "http://localhost/dentaire/RDV/updateARDV",
+        obj
+      );
+      if (response.data.status == true) {
+        console.log(response.data.message);
+        this.$router.push("/ListRDV");
+      }
     },
     checkPatient() {
       let patientId = sessionStorage.getItem("patientId");
@@ -123,7 +141,7 @@ export default {
 }
 .fl-table thead th {
   color: #ffffff;
-  background: #4fc3a1;
+  background:#0d6efd;
 }
 .fl-table thead th:nth-child(odd) {
   color: #ffffff;
@@ -135,7 +153,7 @@ export default {
 .btn {
   width: 80px;
   height: 25px;
-  background-color: #4fc3a1;
+  background-color: #0d6efd;
   border: none;
   margin: 0px 10px;
   color: #ffffff;

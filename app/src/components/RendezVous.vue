@@ -1,7 +1,13 @@
 <template>
+ 
   <div class="container mt-5 mb-5 d-flex justify-content-center">
+    <div class="col-lg-5" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="../assets/pp.jpg" style="object-fit: cover;">
+                    </div>
+                    </div>
     <form @submit.prevent="BookARDV">
-    <div class="card px-1 py-4">
+    <div class="card px-1 py-4 h-100" >
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-12">

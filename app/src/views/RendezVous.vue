@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>this is dashboard page</h1>
+    <h1>Medical specialty concerned with the care of acutely ill hospitalized patients</h1>
     <RendezVousComp />
   </div>
 </template>

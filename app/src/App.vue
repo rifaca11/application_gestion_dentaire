@@ -1,68 +1,23 @@
 <template>
 <div>
 
-  <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- Container wrapper -->
-  <div class="container">
-    <!-- Navbar brand -->
-    <a class="navbar-brand me-2">
-      <img
-        src="/assets/logo_dent.png"
-        loading="lazy"
-        style="margin-top: -1px;"
-      />
-    </a>
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm mt-3 px-5 py-3 py-lg-0">
+            <h1 class="m-0 text-primary"><FIcon :icon="['fas','tooth']" />DentCare</h1>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+            <a href="#" class="nav-item nav-link active"><router-link :to="{ name: 'HomeView' }">Home</router-link></a>
+            <a href="#" class="nav-item nav-link active"><router-link :to="{ name: 'AboutView' }">About</router-link></a>
+            <a href="#" class="nav-item nav-link active"><router-link :to="{ name: 'RendezVous' }">Book now</router-link></a>
 
-    <!-- Toggle button -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-mdb-toggle="collapse"
-      data-mdb-target="#navbarButtonsExample"
-      aria-controls="navbarButtonsExample"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-     
-    </button>
-
-    <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarButtonsExample">
-      <!-- Left links -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#"><router-link :to="{ name: 'HomeView' }">Home</router-link> </a>
-        </li>
-         <li class="nav-item">
-           <a class="nav-link" href="#">
-            <router-link :to="{ name: 'AboutView' }">About</router-link> 
-          </a>
-           </li>
-           <li class="nav-item">
-           <a class="nav-link" href="#">
-            <router-link :to="{ name: 'SignAccount' }">Sign</router-link>
-            </a>
-           </li>
-           <li class="nav-item">
-           <a class="nav-link" href="#">
-           <router-link :to="{ name: 'RendezVous' }">Rendez vous</router-link>
-            </a>
-           </li>
-           <li class="nav-item">
-           <a class="nav-link" href="#">
-            <router-link :to="{ name: 'ListRDV' }">List of RDV</router-link> 
-            </a>
-           </li>
-
-      </ul>
-
-      </div>
-    </div>
-
-  <!-- Container wrapper -->
-</nav>
-<!-- Navbar -->
+            <a href="#" class="nav-item nav-link active"><router-link :to="{ name: 'ListRDV' }">List of appointement</router-link></a>
+            </div>            
+            <a href="#" class="btn btn-primary py-2 px-4 ms-3"><router-link class="text-light" :to="{ name: 'SignAccount' }">Sign</router-link></a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
   <router-view />
 </div>
 </template>
@@ -96,5 +51,8 @@ nav a.router-link-exact-active {
 div button{
   text-decoration: none;
   color:white;
+}
+h1{
+   font-family: "Jost",sans-serif;
 }
 </style>

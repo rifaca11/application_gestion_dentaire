@@ -6,7 +6,6 @@
         <div class="row d-flex">
             <div class="col-lg-6">
                 <div class="card1 pb-5">
-                    <div class="row"> <img src="../assets/logo_dent.png" class="logo"> </div>
                     <div class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img src="../assets/dent.png" class="image"> </div>
                 </div>
             </div>
@@ -30,7 +29,7 @@
                             <h6 class="mb-0 text-sm">Email</h6>
                         </label> <input type="email" placeholder="Enter email" v-model="patientEmail"> </div>
            
-                    <div class="row mb-3 px-3 py-3"> <button type="submit" class="btn btn-blue text-center">Sign Up</button> </div>
+                    <div class="row mb-3 px-3 py-3"> <button type="submit" class="btn btn-primary text-center">Sign Up</button> </div>
                     <div class="row mb-4 px-3"> <small v-if="incomplete">{{ msg }}</small>
       <span>Already got an account.
         <span class="swap" @click="showSign">
@@ -52,7 +51,6 @@
         <div class="row d-flex">
             <div class="col-lg-6">
                 <div class="card1 pb-5">
-                    <div class="row"> <img src="../assets/logo_dent.png" class="logo"></div>
                     <div class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img src="../assets/dent.png" class="image"> </div>
                 </div>
             </div>
@@ -70,7 +68,7 @@
                         </label>
                          <input class="mb-4" type="text" placeholder="Enter your reference" v-model="Reference">
                     </div>
-                    <div class="row mb-3 px-3 py-3"> <button type="submit" class="btn btn-blue text-center">Sign in</button>
+                    <div class="row mb-3 px-3 py-3"> <button type="submit" class="btn btn-primary text-center">Sign in</button>
                     </div>
                 </div>
           
@@ -291,7 +289,7 @@ a {
     background-color: #1A237E
 }
 .swap{
-  color: #1A237E;
+  color: #0d6efd;
   font-weight: bold;
 }
 @media screen and (max-width: 991px) {
