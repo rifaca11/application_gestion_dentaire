@@ -1,4 +1,4 @@
-# application_gestion_dentaire
+# Gestion de rendez-vous d'un cabinet dentaire
 
 ## Contexte du projet
 
