@@ -126,7 +126,6 @@ class RDVS
 
     public function checkAvailableTimes()
     {
-
         $query = "SELECT creneau_id , start_at, end_at FROM creneau WHERE NOT EXISTS (SELECT * FROM RDVS WHERE RDVS.creneau_id_fk = creneau.creneau_id AND RDVS.c_date = :c_date);";
         // prepare the query
         $stmt = $this->conn->prepare($query);
@@ -135,4 +134,16 @@ class RDVS
         $stmt->execute();
         return $stmt;
     }
+
+    public function getSingleAppointments($rdv_id)
+    {
+        $query = "SELECT * from RDVS, creneau where RDVS.creneau_id_fk = creneau.creneau_id and RDVS.rdv_id=$rdv_id";
+        // prepare the query
+        $stmt = $this->conn->prepare($query);
+        // bind the id
+        // $stmt->bindParam(':rdv_id', $this->rdv_id);
+        // execute statement
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
+        }
 }

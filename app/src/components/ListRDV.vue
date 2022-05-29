@@ -22,11 +22,55 @@
           <td>{{ rdv.start_at }} - {{ rdv.end_at }}</td>
           <td>{{ rdv.rdv_id }}</td>
           <td>
-            <button class="btn" @click="updateARDV(rdv.rdv_id)">Update</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn" data-bs-toggle="modal" 
+            data-bs-target="#exampleModal" @click="getSingleAppointment(rdv.rdv_id)">
+              Update
+            </button>
+
+            <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update a Appointement</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+       <form @submit.prevent="updateARDV(rdv.rdv_id)">
+      <div class="modal-body">
+        <div class="mb-3">
+            <label for="c_date" class="col-form-label">Date:</label>
+             <input class="form-control" type="date"
+              v-model="RDVDate" :min="TodayDate()" @change="getAvailableTimes" v-on:input="RDVDate">
+             
+             <label class="form_label" for="Reference">Choose time</label>
+              <select class="form-control" v-model="creneau">
+              <option value="" selected hidden>choose a creneau</option>
+              <option
+                v-for="(time, index) in times_obj"
+                :value="time.creneau_id"
+                :key="index"
+                >{{ time.start_at }} - {{ time.end_at }}
+              </option>
+            </select>
+
+             <label for="subject">Enter Your subject</label>
+                     <input class="form-control" type="text" 
+                     placeholder="subject" v-model="subject"/>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn2">Save</button>
+      </div>
+       </form>
+    </div>
+  </div>
+</div>
+
             <button
               class="btn btn2"
-              @click="deleteARDV(rdv.rdv_id)"
-            >
+              @click="deleteARDV(rdv.rdv_id)">
               Delete
             </button>
           </td>
@@ -34,6 +78,9 @@
       </tbody>
     </table>
     <p v-else>There are no rdvs</p>
+
+
+
   </div>
 </template>
 
@@ -45,10 +92,44 @@ export default {
     return {
       rdvs_obj: {},
       patient_personal_informations: {},
+       patientId: "",
+      date: "",
+      obj: "",
+      times: "",
+      times_obj:{},
+      creneau: "",
+      RDVDate: "",
+      subject: "",
+      selected: '',
+      today: "",
+      popresponse:{},
       app: false
     };
   },
   methods: {
+    TodayDate() {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, "0");
+      var mm = String(today.getMonth() + 1).padStart(2, "0");
+      var yyyy = today.getFullYear();
+      today = yyyy + "-" + mm + "-" + dd;
+      return today;
+    },
+    async getAvailableTimes() {
+      console.log(this.RDVDate);
+      let obj = {
+        c_date: this.RDVDate
+      };
+      const response = await axios.post(
+        "http://localhost/dentaire/RDV/checkAvailableTimes",
+        obj
+      );
+      if (response.data.status == true) {
+        this.times_obj = response.data.data;
+        console.log(response.data.data);
+        console.log(this.times_obj);
+      }
+    },
     async deleteARDV(id) {
       console.log(id);
       let obj = {
@@ -65,27 +146,45 @@ export default {
       }
       this.getAllRDVs();
     },
-    async updateARDV() {
+    async getSingleAppointment(rdv_id) { 
+    const response = await axios.get(
+        "http://localhost/dentaire/RDV/getSingleAppointment/"+rdv_id
+      );
+    //  if (response.data.status == true)
+    //   {
+        // this.app = true;
+        console.log(response.data);
+        console.log('hey');
+        this.subject = response.data.patient_subject;
+        this.RDVDate = response.data.c_date;
+
+      // }
+    },
+    async updateARDV(id) {
       let obj = {
         creneau_id_fk: this.creneau,
         patient_subject: this.subject,
         c_date: this.RDVDate
       };
-      console.log(obj);
+      // console.log(obj);
       const response = await axios.post(
-        "http://localhost/dentaire/RDV/updateARDV",
+        "http://localhost/dentaire/RDV/updateARDV/"+id,
         obj
       );
-      if (response.data.status == true) {
-        console.log(response.data.message);
+      if (response) {
+        // console.log(response.data.message);
         this.$router.push("/ListRDV");
+        this.getAllRDVs();
       }
     },
     checkPatient() {
       let patientId = sessionStorage.getItem("patientId");
-      if (patientId != null) {
+      if (patientId != null)
+       {
         this.getAllRDVs();
-      } else {
+       } 
+      
+      else {
         this.$router.push("/sign");
       }
     },
@@ -94,13 +193,13 @@ export default {
       const response = await axios.get(
         "http://localhost/dentaire/RDV/showMyRDV/" +
           P_id);
-      if (response.data.status == true) {
+      if (response.data.status == true)
+      {
         this.app = true;
-        console.log(response.data);
         this.rdvs_obj = response.data.rdv;
         this.patient_personal_informations = response.data.personal_infos;
-        console.log("obj is : ");
-        console.log(this.rdvs_obj);
+        // console.log("obj is : ");
+        // console.log(this.rdvs_obj);
       } else {
         this.app = false;
       }
@@ -109,13 +208,14 @@ export default {
   beforeMount() {
     this.checkPatient();
   }
-};
+    };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 /* Table Styles */
-.table-wrapper {
+.table-wrapper 
+{
   margin: 10px 70px 70px;
   box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
 }

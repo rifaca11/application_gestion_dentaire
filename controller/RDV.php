@@ -16,8 +16,6 @@ class RDV
 
     public function checkPatient()
     {
-
-
         // instantiate Database
         $database = new Database();
         $db = $database->connect();
@@ -106,6 +104,7 @@ class RDV
 
         // get raw posted data
         $data = json_decode(file_get_contents("php://input"));
+
 
         // get The RDV ID
         $RDV->rdv_id = $id;
@@ -249,4 +248,20 @@ class RDV
             echo json_encode($msg);
         }
     }
+
+    public function getSingleAppointment($rdv_id){
+         // instantiate Database
+         $database = new Database();
+         $db = $database->connect();
+        // instantiate RDV object
+        $RDV = new RDVS($db);
+
+        // $data = json_decode(file_get_contents('php://input'));
+
+        //  $rdv_id= $data->rdv_id;
+         
+      print_r(json_encode( $RDV->getSingleAppointments($rdv_id)));
+  }
 }
+
+

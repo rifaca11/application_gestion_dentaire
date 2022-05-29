@@ -10,11 +10,17 @@
             <div class="navbar-nav ms-auto py-0">
             <a href="#" class="nav-item nav-link active"><router-link :to="{ name: 'HomeView' }">Home</router-link></a>
             <a href="#" class="nav-item nav-link active"><router-link :to="{ name: 'AboutView' }">About</router-link></a>
-            <a href="#" class="nav-item nav-link active"><router-link :to="{ name: 'RendezVous' }">Book now</router-link></a>
+             
+            <a href="#" class="nav-item nav-link active" v-if="sessionid"><router-link :to="{ name: 'RendezVous' }">Book now</router-link></a>
 
-            <a href="#" class="nav-item nav-link active"><router-link :to="{ name: 'ListRDV' }">List of appointement</router-link></a>
+            <a href="#" class="nav-item nav-link active" v-if="sessionid"><router-link :to="{ name: 'ListRDV' }">List of appointement</router-link></a>
+          
             </div>            
-            <a href="#" class="btn btn-primary py-2 px-4 ms-3"><router-link class="text-light" :to="{ name: 'SignAccount' }">Sign</router-link></a>
+            <a href="#" class="btn btn-primary py-2 px-4 ms-3" v-if = "!sessionid"><router-link class="text-light" :to="{ name: 'SignAccount' }">Sign</router-link></a>
+
+             <button class="btn btn-primary py-2 px-4 ms-3" @click="logout()" v-else>Logout</button>
+
+
         </div>
     </nav>
     <!-- Navbar End -->
@@ -22,9 +28,19 @@
 </div>
 </template>
 <script>
-
 export default {
   name: 'App',
+   data() {
+    return {
+      sessionid: sessionStorage.getItem('patientId'),
+    }
+   },
+   methods:{
+      logout() {
+        sessionStorage.clear();
+        this.$router.push("/SignAccount");
+      }
+   }
 };
 </script>
 <style>
